@@ -46,24 +46,28 @@ Here's an short example for now (the includes are Symfony 2 twig tags):
 ```
 
 ```
+<!-- theme_selection.html.twig -->
 <div ng-show="wizard.steps.theme">
     <p class="info">Please select a theme</p>
 </div>
 ```
 
 ```
+<!-- demo.html.twig -->
 <div ng-show="wizard.steps.demo">
     <p class="info">Please provide a demo URL</p>
 </div>
 ```
 
 ```
+<!-- doc.html.twig -->
 <div ng-show="wizard.steps.doc">
     <p class="info">Please provide a documentation URL</p>
 </div>
 ```
 
 ```
+<!-- community.html.twig -->
 <div ng-show="wizard.steps.community">
     <p class="info">Please provide a wiki (community) URL</p>
 </div>
