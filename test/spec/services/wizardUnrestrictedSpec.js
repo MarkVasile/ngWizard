@@ -89,8 +89,10 @@ describe("Wizard: Unit Tests Free Navigation", function() {
     });
 
     it('should finish by marking the current step as complete and returning true', function() {
-        var done = w.finish();
+        w.finish();
+        var done = w.isComplete()
         expect(Object.keys(w.completed).length).toEqual(4);
+        expect(callback).toHaveBeenCalled();
         expect(done).toBe(true);
     });
 });
