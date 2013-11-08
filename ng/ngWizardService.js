@@ -83,9 +83,9 @@ angular.module('fl.wizard', [])
             this.callback(this.steps);
         };
 
-	this.isComplete = function() {
-	    return (Object.keys(this.completed).length == this.steps_indexed.length);
-	};
+        this.isComplete = function() {
+            return (Object.keys(this.completed).length == this.steps_indexed.length);
+        };
 
         this.next = function() {
             if (!this.hasNext())
