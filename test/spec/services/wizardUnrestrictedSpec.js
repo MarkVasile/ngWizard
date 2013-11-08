@@ -82,5 +82,16 @@ describe("Wizard: Unit Tests Free Navigation", function() {
         w.markCompleted();
         expect(Object.keys(w.completed).length).toEqual(4);
     });
+
+    it('should allow manually marking the current step as incomple', function() {
+        w.markIncomplete();
+        expect(Object.keys(w.completed).length).toEqual(3);
+    });
+
+    it('should finish by marking the current step as complete and returning true', function() {
+        var done = w.finish();
+        expect(Object.keys(w.completed).length).toEqual(4);
+        expect(done).toBe(true);
+    });
 });
 

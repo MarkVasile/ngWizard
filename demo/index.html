@@ -1,0 +1,88 @@
+<html ng-app='myApp'>
+<head>
+<title>ngWizard Service</title>
+<link rel="stylesheet" type="text/css" media="screen" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<style>
+a { color: #aaa; }
+.completed { background: #cfa; }
+a.active_step { color: black; }
+a.active_step:hover { color: #008; }
+.fa { font-size: 14pt; color: #4a4; }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script src="../ng/ngWizardService.js"></script>
+<script src="ng.js"></script>
+
+</head>
+
+<body>
+<div class="container" ng-controller="myWizardController">
+    <div class="row">
+    <div class="grid_12">
+        <div class="wizard" ng-cloak>
+
+            <ul class="list-inline">
+                <li ng-class="{completed: wizard.completed.theme}"><a href= " javascript:void(0); " ng-click= " wizard.goto('theme')     " ng-class = " { active_step: wizard.steps.theme }     " > Theme         </a> : </li>
+                <li ng-class="{completed: wizard.completed.demo}"><a href= " javascript:void(0); " ng-click= " wizard.goto('demo')      " ng-class = " { active_step: wizard.steps.demo }      " > Demo          </a> : </li>
+                <li ng-class="{completed: wizard.completed.doc}"><a href= " javascript:void(0); " ng-click= " wizard.goto('doc')       " ng-class = " { active_step: wizard.steps.doc }       " > Documentation </a> : </li>
+                <li ng-class="{completed: wizard.completed.community}"><a href= " javascript:void(0); " ng-click= " wizard.goto('community') " ng-class = " { active_step: wizard.steps.community } " > Community     </a> : </li>
+            </ul>
+
+            <hr />
+
+            <div class="pager pull_right">
+                <button ng-click="wizard.back()" ng-disabled="!wizard.hasPrev()">Prev</button>
+                <button ng-click="wizard.next()" ng-hide="!wizard.hasNext()">Next</button>
+                <button ng-click="wizard.finish()" ng-disabled="wizard.isComplete() && !modelDirty()" ng-show="!wizard.hasNext()">Done</button>
+		<i ng-show="wizard.isComplete() && !modelDirty()" class="fa fa-check"></i> 
+            </div>
+
+            <div ng-show="wizard.steps.theme">
+                <p class="info">Please select a theme</p>
+		<select ng-model='myDemo.theme' ng-options='theme for theme in themes'></select>
+            </div>
+
+            <div ng-show="wizard.steps.demo">
+                <p class="info">Please provide a demo URL</p>
+		<input type="text" ng-model="myDemo.demo" />
+            </div>
+
+            <div ng-show="wizard.steps.doc">
+                <p class="info">Please provide a documentation URL</p>
+		<input type="text" ng-model="myDemo.doc" />
+            </div>
+
+            <div ng-show="wizard.steps.community">
+                <p class="info">Please provide a wiki (community) URL</p>
+		<input type="text" ng-model="myDemo.community" />
+            </div>
+
+<hr />
+<div>
+	<ul>
+		<li>Theme: {{ myDemo.theme }}</li>
+		<li>Demo: {{ myDemo.demo }}</li>
+		<li>Doc: {{ myDemo.doc }}</li>
+		<li>Community: {{ myDemo.community }}</li>
+	</ul>
+	<span ng-show="save_counter" class="info">Model saved x{{ save_counter }}</span>
+</div>
+
+            <hr />
+            <div class="pager pull_right">
+                <button ng-click="wizard.back()" ng-disabled="!wizard.hasPrev()">Prev</button>
+                <button ng-click="wizard.next()" ng-hide="!wizard.hasNext()">Next</button>
+                <button ng-click="wizard.finish()" ng-disabled="wizard.isComplete() && !modelDirty()" ng-show="!wizard.hasNext()">Done</button>
+		<i ng-show="wizard.isComplete() && !modelDirty()" class="fa fa-check"></i> 
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -73,8 +73,19 @@ angular.module('fl.wizard', [])
         };
 
         this.markIncomplete = function() {
-            this.completed[this.steps_indexed[this.index]] = 0;
+            delete(this.completed[this.steps_indexed[this.index]]);
         };
+
+        this.finish = function() {
+            this.markCompleted();
+            if (Object.keys(this.completed).length != this.steps_indexed.length) this.callback(this.steps, true);
+
+            this.callback(this.steps);
+        };
+
+	this.isComplete = function() {
+	    return (Object.keys(this.completed).length == this.steps_indexed.length);
+	};
 
         this.next = function() {
             if (!this.hasNext())
@@ -122,7 +133,7 @@ angular.module('fl.wizard', [])
                 c++;
             }
 
-            // if not found, return first step instead
+            /* if requested step is not found, return first step instead */
             this.index = 0;
             this.steps[0] = 1;
 
